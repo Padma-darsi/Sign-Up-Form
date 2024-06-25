@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup Form</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="favicon.jpg" type="image/x-icon">
+    <meta name="description" content="A simple signup form for users to register.">
+</head>
+<body>
+    <header>
+        <h1>Signup</h1>
+    </header>
+    <main>
+        <form id="signup-form" action="#" method="POST" onsubmit="return validateForm()">
+            <label for="full-name">Full Name</label>
+            <input type="text" placeholder="Full Name" id="full-name" name="full-name" required>
+
+            <label for="email">Email</label>
+            <input type="email"  placeholder="Email" id="email" name="email" required>
+
+            <label for="password">Password</label>
+            <input type="password"  placeholder="Password" id="password" name="password" required>
+
+            <label for="confirm-password">Confirm Password</label>
+            <input type="password"  placeholder="Confirm Password" id="confirm-password" name="confirm-password" required>
+
+            <label for="dob">Date of Birth</label>
+            <input type="text" id="dob"  placeholder="dd-mm-yy" name="dob" placeholder="dd-mm-yyyy" required>
+
+            <label>Are you a student or an employee?</label>
+            <label for="student">Student</label> 
+            <input type="radio" id="student" name="role" value="student" required>
+            
+            <label for="employee">Employee</label>
+            <input type="radio" id="employee" name="role" value="employee" required>
+            
+
+            <label for="terms">I agree to all the Terms and Conditions</label>
+            <input    type="checkbox" id="terms" name="terms" required>
+
+            <button type="submit">Signup</button>
+            <p id="feedback" style="color: red;"></p>
+        </form>
+    </main>
+    <footer>
+        <p>&copy; 2024 Signup Form. All rights reserved.</p>
+    </footer>
+    <script>
+        function validateForm() {
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+            const feedback = document.getElementById('feedback');
+
+            const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+            if (!email.match(emailPattern)) {
+                feedback.textContent = 'Please enter a valid email address.';
+                return false;
+            }
+
+            if (password.length < 8) {
+                feedback.textContent = 'Password must be at least 8 characters long.';
+                return false;
+            }
+
+            if (password !== confirmPassword) {
+                feedback.textContent = 'Passwords do not match.';
+                return false;
+            }
+
+            feedback.textContent = '';
+            alert('Form submitted successfully!');
+            return true;
+        }
+    </script>
+</body>
+</html>
